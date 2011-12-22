@@ -15,8 +15,8 @@ object DispatchStrategy {
 
   val d = newExecutorBasedEventDrivenWorkStealingDispatcher("name")
     .withNewThreadPoolWithLinkedBlockingQueueWithCapacity(1000)
-    .setCorePoolSize(3)
-    .setMaxPoolSize(3)
+    .setCorePoolSize(8)
+    .setMaxPoolSize(64)
     .build
 
   val sockets = newExecutorBasedEventDrivenDispatcher("name")
