@@ -24,6 +24,7 @@ object JsonValidSpec extends Specification {
 
     "invalidate wrong simple type conversion" in {
       JsString("string").validate[Long] must equalTo(JsError(Seq(JsPath() -> Seq(ValidationError("validate.error.expected.jsnumber")))))
+      JsString("string").validate[Option[Long]] must equalTo(JsError(Seq(JsPath() -> Seq(ValidationError("validate.error.expected.jsnumber")))))
       JsNumber(5).validate[String] must equalTo(JsError(Seq(JsPath() -> Seq(ValidationError("validate.error.expected.jsstring")))))
       JsBoolean(false).validate[Double] must equalTo(JsError(Seq(JsPath() -> Seq(ValidationError("validate.error.expected.jsnumber")))))
     }

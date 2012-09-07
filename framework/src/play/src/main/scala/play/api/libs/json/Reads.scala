@@ -322,7 +322,7 @@ trait DefaultReads {
 
   implicit def OptionReads[T](implicit fmt: Reads[T]): Reads[Option[T]] = new Reads[Option[T]] {
     import scala.util.control.Exception._
-    def reads(json: JsValue) = fmt.reads(json).fold( e => JsSuccess(None), v => JsSuccess(Some(v)))
+    def reads(json: JsValue) = fmt.reads(json).fold( e => JsError(e), v => JsSuccess(Some(v)))
   }
 
   /**
